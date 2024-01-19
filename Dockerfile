@@ -4,5 +4,6 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
 COPY --from=build /target/project-0.0.1-SNAPSHOT.jar project.jar
-EXPOSE 9090
+EXPOSE $PORT
 ENTRYPOINT [ "java","-jar","project.jar" ]  
+CMD ["--server.port=${PORT}"]
